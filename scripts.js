@@ -11,34 +11,59 @@ document.addEventListener('keydown', function(evento){
             nivel.puntuacion = 0;
             cactus.x = ancho + 100;
             
-        }
-        
-        
+        }       
     }
 });
-
-
-
-
-var imgRex, imgNube, imgCactus,imgSuelo;
-
-function cargaImagenes(){
-    imgRex = new Image();
-    imgNube = new Image();
-    imgCactus = new Image();
-    imgSuelo = new Image();
-
-    imgRex.src = 'img/mario.png';
-    imgNube.src = 'img/nube.png';
-    imgCactus.src = 'img/tuberia.png';
-    imgSuelo.src = 'img/suelo.png';
-}
-
 
 
 var ancho = 700;
 var alto = 300;
 var canvas,ctx;
+
+var suelo = 200;
+var trex = {
+    y: suelo, 
+    vy: 0, 
+    gravedad: 2 , 
+    salto: 28, 
+    vymax: 9, 
+    saltando : false};
+var nivel = {
+    velocidad: 9, 
+    puntuacion : 0, 
+    muerto : false};
+var cactus = {
+    x: ancho + 100 , 
+    y: suelo - 25 };
+var nube = {
+    x: 400, 
+    y: 100, 
+    velocidad : 1};
+var suelog = {
+    x: 0, 
+    y:suelo + 30};
+
+var imgRex,imgRex1, imgNube, imgCactus,imgSuelo;
+var personaje = [];
+function cargaImagenes(){
+    imgRex = new Image();
+    imgRex1 = new Image();
+    imgNube = new Image();
+    imgCactus = new Image();
+    imgSuelo = new Image();
+
+    
+    imgRex.src = 'img/mario0.png';
+    imgRex1.src = 'img/mario1.png';
+    imgNube.src = 'img/nube.png';
+    imgCactus.src = 'img/tuberia.png';
+    imgSuelo.src = 'img/suelo.png';
+    personaje = [imgRex, imgRex1];
+    
+
+}
+
+
 
 function inicializa(){
     canvas = document.getElementById('canvas');
@@ -52,16 +77,24 @@ function borraCanvas(){
     canvas.height = alto;
 }
 
-var suelo = 200;
-var trex = {y: suelo, vy: 0, gravedad: 2 , salto: 28, vymax: 9, saltando : false};
-var nivel = {velocidad: 9, puntuacion : 0, muerto : false};
-var cactus = {x: ancho + 100 , y: suelo - 25 };
-var nube = {x: 400, y: 100, velocidad : 1};
-var suelog = {x: 0, y:suelo};
 
 
+var i = 0;
 function dibujaRex(){
-    ctx.drawImage(imgRex,0,0,920,920,100,trex.y,50,50);
+    
+    setInterval(function(){ 
+        if(i > 2){
+            i = 0;
+        }else if(i == 0){
+            i = 1;
+        }else if(i == 1){
+            i = 0;
+        }
+
+    }, 100);
+    
+    
+    ctx.drawImage(personaje[i],0,0,50,50,100,trex.y,50,50);
 }
 //--------------------------------------------------
 
@@ -80,11 +113,11 @@ function logicaCactus(){
 //------------------------------------------
 
 function dibujaSuelo(){
-    ctx.drawImage(imgSuelo,suelog.x ,0, 348,348, 0 , suelog.y, 720, 200);
+    ctx.drawImage(imgSuelo,suelog.x ,0, 700,30, 0 , suelog.y, 700, 30);
 }
 
 function logicaSuelo(){
-    if(suelog.x > 700){
+    if(suelog.x > 20){
         suelog.x = 0;
     } else{
         suelog.x += nivel.velocidad;
@@ -106,8 +139,12 @@ function logicaNube(){
 
 
 function saltar(){
-    trex.saltando = true;
-    trex.vy = trex.salto;
+    if(trex.saltando == false){
+        trex.saltando = true;
+        trex.vy = trex.salto;
+    }
+    
+    
 }
 
 function gravedad(){
@@ -142,7 +179,7 @@ function colision(){
 function puntuacion(){
     ctx.font = "30px impact";
     ctx.fillStyle = '#555555';
-    ctx.fillText('${nivel.puntuacion}' ,600,50);
+    ctx.fillText(`${nivel.puntuacion}` ,600,50);
     
     if(nivel.muerto == true){   
     
@@ -166,9 +203,10 @@ function principal(){
     gravedad();
     colision();
     logicaSuelo();
+    dibujaSuelo();
     logicaCactus();
     logicaNube();
-    dibujaSuelo();
+    
     dibujaCactus();
     dibujaNube();
     dibujaRex();
