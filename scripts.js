@@ -48,6 +48,7 @@ var personaje = [];
 function cargaImagenes(){
     imgRex = new Image();
     imgRex1 = new Image();
+    imgRex2 = new Image();
     imgNube = new Image();
     imgCactus = new Image();
     imgSuelo = new Image();
@@ -55,10 +56,11 @@ function cargaImagenes(){
     
     imgRex.src = 'img/mario0.png';
     imgRex1.src = 'img/mario1.png';
+    imgRex2.src = 'img/mario2.png';
     imgNube.src = 'img/nube.png';
     imgCactus.src = 'img/tuberia.png';
     imgSuelo.src = 'img/suelo.png';
-    personaje = [imgRex, imgRex1];
+    personaje = [imgRex, imgRex1, imgRex2];
     
 
 }
@@ -80,23 +82,26 @@ function borraCanvas(){
 
 
 var i = 0;
+var velocidadFrame = (personaje.length * 1000);
 function dibujaRex(){
     
     setInterval(function(){ 
-        if(i > 2){
-            i = 0;
-        }else if(i == 0){
-            i = 1;
-        }else if(i == 1){
+        if(i < personaje.length - 1){
+            i++;
+        }else{
             i = 0;
         }
-
-    }, 100);
-    
+        //console.log("xd")
+        
+    }, velocidadFrame);
+    //esta tomando el set interval como el tiempo en el que debe de empezar a transcurrir las animaciones
     
     ctx.drawImage(personaje[i],0,0,50,50,100,trex.y,50,50);
 }
 //--------------------------------------------------
+
+
+
 
 function dibujaCactus(){
     ctx.drawImage(imgCactus,0,0, 370,370,cactus.x, cactus.y, 40, 75);
@@ -191,7 +196,7 @@ function puntuacion(){
 
 //----------------------------------------
 // Bucle principal
-var FPS = 50;
+var FPS = 20;
 setInterval(function(){
     principal();
 },1000/FPS);
