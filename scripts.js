@@ -60,19 +60,25 @@ function cargaImagenes(){
     imgNube.src = 'img/nube.png';
     imgCactus.src = 'img/tuberia.png';
     imgSuelo.src = 'img/suelo.png';
-    personaje = [imgRex, imgRex1, imgRex2];
+    personaje = [imgRex, imgRex1, imgRex, imgRex2];
     
 
 }
 
 
-
+requestAnimationFrame(inicializa);
 function inicializa(){
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
     cargaImagenes();
+    principal();
 }
 
+function reInicializa(){
+    principal();
+}
+
+//requestAnimationFrame(reInicializa);
 
 function borraCanvas(){
     canvas.width = ancho;
@@ -85,22 +91,24 @@ var i = 0;
 var velocidadFrame = (personaje.length * 1000);
 function dibujaRex(){
     
-    setInterval(function(){ 
-        if(i < personaje.length - 1){
-            i++;
-        }else{
-            i = 0;
-        }
+    //setInterval(function(){ 
+        
         //console.log("xd")
         
-    }, velocidadFrame);
+    //}, 10000);
     //esta tomando el set interval como el tiempo en el que debe de empezar a transcurrir las animaciones
     
     ctx.drawImage(personaje[i],0,0,50,50,100,trex.y,50,50);
 }
 //--------------------------------------------------
 
-
+setInterval(function(){
+    if(i < personaje.length - 1){
+        i++;
+    }else{
+        i = 0;
+    }
+}, 100)
 
 
 function dibujaCactus(){
@@ -196,10 +204,11 @@ function puntuacion(){
 
 //----------------------------------------
 // Bucle principal
+/*
 var FPS = 20;
 setInterval(function(){
     principal();
-},1000/FPS);
+},1000/FPS);*/
 //El set interval hace que se ejecute algo cada cierto tiempo
 
 function principal(){
@@ -216,4 +225,7 @@ function principal(){
     dibujaNube();
     dibujaRex();
     puntuacion();
+    requestAnimationFrame(principal);
 }
+
+
