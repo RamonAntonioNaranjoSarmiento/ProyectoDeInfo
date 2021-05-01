@@ -50,6 +50,7 @@ function cargaImagenes(){
     imgRex1 = new Image();
     imgRex2 = new Image();
     imgRexSalto = new Image();
+    imgRexMuerto = new Image();
     imgNube = new Image();
     imgCactus = new Image();
     imgSuelo = new Image();
@@ -59,6 +60,7 @@ function cargaImagenes(){
     imgRex1.src = 'img/mario1.png';
     imgRex2.src = 'img/mario2.png';
     imgRexSalto.src = 'img/marioSalto.png';
+    imgRexMuerto.src = 'img/marioMuerto.png';
     imgNube.src = 'img/nube.png';
     imgCactus.src = 'img/tuberia.png';
     imgSuelo.src = 'img/suelo.png';
@@ -99,12 +101,16 @@ function dibujaRex(){
         
     //}, 10000);
     //esta tomando el set interval como el tiempo en el que debe de empezar a transcurrir las animaciones
-    
-    if(trex.saltando == true){
-        ctx.drawImage(imgRexSalto,0,0,50,50,100,trex.y,50,50);    
+    if(nivel.muerto == true){
+        ctx.drawImage(imgRexMuerto,0,0,50,50,100,trex.y,50,50);
     }else{
-        ctx.drawImage(personaje[i],0,0,50,50,100,trex.y,50,50);
+        if(trex.saltando == true){
+            ctx.drawImage(imgRexSalto,0,0,50,50,100,trex.y,50,50);    
+        }else{
+            ctx.drawImage(personaje[i],0,0,50,50,100,trex.y,50,50);
+        }
     }
+    
     
 }
 //--------------------------------------------------
