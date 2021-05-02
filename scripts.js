@@ -56,11 +56,11 @@ function cargaImagenes(){
     imgSuelo = new Image();
     
     
-    imgRex.src = 'img/mario0.png';
-    imgRex1.src = 'img/mario1.png';
-    imgRex2.src = 'img/mario2.png';
-    imgRexSalto.src = 'img/marioSalto.png';
-    imgRexMuerto.src = 'img/marioMuerto.png';
+    imgRex.src = 'img/luigi0.png';
+    imgRex1.src = 'img/luigi1.png';
+    imgRex2.src = 'img/luigi2.png';
+    imgRexSalto.src = 'img/luigiSalto.png';
+    imgRexMuerto.src = 'img/luigiMuerto.png';
     imgNube.src = 'img/nube.png';
     imgCactus.src = 'img/tuberia.png';
     imgSuelo.src = 'img/suelo.png';
