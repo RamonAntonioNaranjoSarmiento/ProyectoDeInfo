@@ -10,28 +10,27 @@
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <script src="scripts.js" ></script>
 </head>
-<body onload="inicializa();">
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(255, 230, 0); opacity: 0.9;">
+<body onload="inicializa();" style="background-color: #a799b7;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fdca40; opacity:0.9;">
         <a class="navbar-brand" href="#">
-          <img src="https://prepafrayangelico.edu.mx/img/logo.png" alt="" height="50px" width="auto">
+            <img src="https://prepafrayangelico.edu.mx/img/logo.png" alt="" height="50px" width="auto">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-          aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Inicio</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="juego.html">Juego dinosaurio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contacto.html">Contacto</a>
-            </li>
-          </ul>
-    
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio &nbsp;</a>
+                </li>
+                <li class="nav-item mx-2 active" style="width:150px;">
+                    <a class="nav-link" href="juego.html">Juego Mario&nbsp;<i class="fa fa-gamepad" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contacto.html">Contacto&nbsp;<i class="fas fa-mail-bulk    "></i></a>
+                </li>
+            </ul>
         </div>
         <div>
             <div class="row">
@@ -47,7 +46,7 @@
                             aria-hidden="true"></i></a></div>
             </div>
         </div>
-      </nav>
+    </nav>
       <div class="container-fluid">
         <div class="row">
             <div class="col-12 text-center">
@@ -55,14 +54,28 @@
             </div>
         </div>
       </div>
-        <canvas id = "canvas" width="800" height="300" class="my-5" style="border:2px solid #000000; padding-left: 0;padding-right: 0;margin-left: auto;margin-right: auto;display: block;"></canvas>
+        <canvas id = "canvas" width="800" height="300" class="my-5" style="border:2px solid #000000;background-color: white; padding-left: 0;padding-right: 0;margin-left: auto;margin-right: auto;display: block;"></canvas>
 
         <div class="container">
             <div class="row">
                 >
             </div>
         </div>
-
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                  <h4 class="text-warning">El proceso</h4>
+                  <hr class="bg-warning">
+                </div>
+                <div class="col-6 mx-2">
+                  <p class="text-justify">
+                    Decidimos hacer un juego de mario ya que nos gusta a los dos, somos estudiantes de la preparatoria fray
+                    angelico y hicimos este trabajo para la materia de TICS por la cual damos a conocer todo lo que se puede hacer
+                    con el lenguaje de programación de JavaScript.
+                  </p>
+                </div>
+              </div>
+        </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
