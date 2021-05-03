@@ -19,7 +19,12 @@ document.addEventListener('keydown', function(evento){
     if(evento.keyCode == 18){//cuando sepulsa una tecla se suelta un numerito, el numero del espacio es 32
         console.log("arriba");
         //cuando se pulse el numero 32 (el espacio) que se imprima salta
-         
+        if(nivel.muerto == true){
+
+        }else{
+            controlDePoderes();
+        }
+            
     }
 });
 
@@ -215,7 +220,8 @@ function controlDeHabilidades(){
         case 'luigi':  
             trex.gravedad = 2;
             trex.salto = 28;        
-            console.log('luigi');        
+            console.log('luigi');  
+                 
         break;
 
         case 'wario':   
@@ -235,13 +241,52 @@ function controlDeHabilidades(){
 }
 
 function saltar(){
+
+    
     if(trex.saltando == false){
         trex.saltando = true;
         trex.vy = trex.salto;
     }
-    
+
     
 }
+
+function controlDePoderes(){
+    switch(chooseCharacter){
+        
+        case 'mario': 
+            trex.gravedad = 2;
+            trex.salto = 28;     
+            console.log('mario');        
+        break;
+
+        case 'luigi':  
+            trex.gravedad = 2;
+            trex.salto = 28;        
+            console.log('luigi');  
+            habilidadLuigi();      
+        break;
+
+        case 'wario':   
+            trex.gravedad = 5;
+            trex.salto = 40;     
+                console.log('wario');      
+        break;
+
+        case 'waluigi':  
+            trex.gravedad = .5;
+            trex.salto = 20;  
+                console.log('waluigi');        
+        break;
+        default: 
+        console.log("No hay personaje")
+    }   
+}
+
+function habilidadLuigi(){
+    
+}
+
 
 function gravedad(){
     if(trex.saltando == true){
