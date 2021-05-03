@@ -15,6 +15,14 @@ document.addEventListener('keydown', function(evento){
     }
 });
 
+document.addEventListener('keydown', function(evento){
+    if(evento.keyCode == 18){//cuando sepulsa una tecla se suelta un numerito, el numero del espacio es 32
+        console.log("arriba");
+        //cuando se pulse el numero 32 (el espacio) que se imprima salta
+         
+    }
+});
+
 
 var ancho = 700;
 var alto = 300;
@@ -56,16 +64,15 @@ function elegirPersonaje(){
 function controlDeBotones(){
     
     for(var i = 0; i < 4 ; i++){
-
-        if(nivel.muerto == false){
-            document.getElementById('wario').disabled = true;       
-            
-    
-        } else if(nivel.muerto == true){
-            document.getElementById('wario').disabled = false;
-            
-            
-        }    
+        if(chooseCharacter != valoresDePersonajes[i]){
+            if(nivel.muerto == false){
+                document.getElementById(valoresDePersonajes[i]).disabled = true;       
+                
+        
+            } else if(nivel.muerto == true){
+                document.getElementById(valoresDePersonajes[i]).disabled = false;            
+            }    
+        }       
     }
     
     
@@ -193,6 +200,7 @@ function logicaNube(){
         nube.x -= nube.velocidad;
     }
 }
+
 
 
 function saltar(){
