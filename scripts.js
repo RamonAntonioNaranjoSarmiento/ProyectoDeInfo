@@ -43,9 +43,18 @@ var suelog = {
     x: 0, 
     y:suelo + 30};
 
-var imgRex,imgRex1, imgNube, imgCactus,imgSuelo;
+var imgRex,imgRex1, imgNube, imgCactus,imgSuelo,chooseCharacter;
 var personaje = [];
+
+function elegirPersonaje(){
+    chooseCharacter = document.nombreform.character.value;
+    cargaImagenes();
+}
+
+
+
 function cargaImagenes(){
+    
     imgRex = new Image();
     imgRex1 = new Image();
     imgRex2 = new Image();
@@ -56,17 +65,19 @@ function cargaImagenes(){
     imgSuelo = new Image();
     
     
-    imgRex.src = 'img/luigi0.png';
-    imgRex1.src = 'img/luigi1.png';
-    imgRex2.src = 'img/luigi2.png';
-    imgRexSalto.src = 'img/luigiSalto.png';
-    imgRexMuerto.src = 'img/luigiMuerto.png';
+    imgRex.src = 'img/'+ chooseCharacter +'0.png';
+    imgRex1.src = 'img/'+ chooseCharacter +'1.png';
+    imgRex2.src = 'img/'+ chooseCharacter +'2.png';
+    imgRexSalto.src = 'img/' + chooseCharacter +'Salto.png';
+    imgRexMuerto.src = 'img/'+ chooseCharacter +'Muerto.png';
     imgNube.src = 'img/nube.png';
     imgCactus.src = 'img/tuberia.png';
     imgSuelo.src = 'img/suelo.png';
     personaje = [imgRex, imgRex1, imgRex, imgRex2];
     
-
+    setInterval(function(){
+        console.log(chooseCharacter);
+    }, 1000); 
 }
 
 
@@ -74,7 +85,8 @@ requestAnimationFrame(inicializa);
 function inicializa(){
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
-    cargaImagenes();
+    elegirPersonaje();
+    //cargaImagenes();
     principal();
 }
 
