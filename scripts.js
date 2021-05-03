@@ -59,6 +59,7 @@ var valoresDePersonajes = ['mario', 'luigi', 'wario', 'waluigi'];
 function elegirPersonaje(){
     chooseCharacter = document.nombreform.character.value;   
     cargaImagenes();
+    controlDeHabilidades();
 }
 
 function controlDeBotones(){
@@ -201,7 +202,37 @@ function logicaNube(){
     }
 }
 
+var verNombre;
+function controlDeHabilidades(){
+    switch(chooseCharacter){
+        
+        case 'mario': 
+            trex.gravedad = 2;
+            trex.salto = 28;     
+            console.log('mario');        
+        break;
 
+        case 'luigi':  
+            trex.gravedad = 2;
+            trex.salto = 28;        
+            console.log('luigi');        
+        break;
+
+        case 'wario':   
+            trex.gravedad = 5;
+            trex.salto = 40;     
+                console.log('wario');      
+        break;
+
+        case 'waluigi':  
+            trex.gravedad = .5;
+            trex.salto = 20;  
+                console.log('waluigi');        
+        break;
+        default: 
+        console.log("No hay personaje")
+    }   
+}
 
 function saltar(){
     if(trex.saltando == false){
@@ -274,6 +305,7 @@ function principal(){
     logicaCactus();
     logicaNube();
     controlDeBotones();
+    
     dibujaCactus();
     dibujaNube();
     dibujaRex();
