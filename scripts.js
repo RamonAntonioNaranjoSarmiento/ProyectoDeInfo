@@ -45,13 +45,32 @@ var suelog = {
 
 var imgRex,imgRex1, imgNube, imgCactus,imgSuelo,chooseCharacter;
 var personaje = [];
+var valoresDePersonajes = ['mario', 'luigi', 'wario', 'waluigi'];
+
 
 function elegirPersonaje(){
-    chooseCharacter = document.nombreform.character.value;
+    chooseCharacter = document.nombreform.character.value;   
     cargaImagenes();
 }
 
+function controlDeBotones(){
+    
+    for(var i = 0; i < 4 ; i++){
 
+        if(nivel.muerto == false){
+            document.getElementById('wario').disabled = true;       
+            
+    
+        } else if(nivel.muerto == true){
+            document.getElementById('wario').disabled = false;
+            
+            
+        }    
+    }
+    
+    
+    
+}
 
 function cargaImagenes(){
     
@@ -75,9 +94,9 @@ function cargaImagenes(){
     imgSuelo.src = 'img/suelo.png';
     personaje = [imgRex, imgRex1, imgRex, imgRex2];
     
-    setInterval(function(){
-        console.log(chooseCharacter);
-    }, 1000); 
+    //setInterval(function(){
+      //  console.log(chooseCharacter);
+    //}, 1000); 
 }
 
 
@@ -220,9 +239,10 @@ function puntuacion(){
     ctx.fillText(`${nivel.puntuacion}` ,600,50);
     
     if(nivel.muerto == true){   
-    
+        
         ctx.font = "60px impact"   
         ctx.fillText('Game Over', 240, 250);
+        
     }   
 }
 
@@ -245,7 +265,7 @@ function principal(){
     dibujaSuelo();
     logicaCactus();
     logicaNube();
-    
+    controlDeBotones();
     dibujaCactus();
     dibujaNube();
     dibujaRex();
