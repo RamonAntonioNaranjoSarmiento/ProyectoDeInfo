@@ -48,29 +48,41 @@ var personaje = [];
 function cargaImagenes(){
     imgRex = new Image();
     imgRex1 = new Image();
+    imgRex2 = new Image();
+    imgRexSalto = new Image();
+    imgRexMuerto = new Image();
     imgNube = new Image();
     imgCactus = new Image();
     imgSuelo = new Image();
-
     
-    imgRex.src = 'img/mario0.png';
-    imgRex1.src = 'img/mario1.png';
+    
+    imgRex.src = 'img/luigi0.png';
+    imgRex1.src = 'img/luigi1.png';
+    imgRex2.src = 'img/luigi2.png';
+    imgRexSalto.src = 'img/luigiSalto.png';
+    imgRexMuerto.src = 'img/luigiMuerto.png';
     imgNube.src = 'img/nube.png';
     imgCactus.src = 'img/tuberia.png';
     imgSuelo.src = 'img/suelo.png';
-    personaje = [imgRex, imgRex1];
+    personaje = [imgRex, imgRex1, imgRex, imgRex2];
     
 
 }
 
 
-
+requestAnimationFrame(inicializa);
 function inicializa(){
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
     cargaImagenes();
+    principal();
 }
 
+function reInicializa(){
+    principal();
+}
+
+//requestAnimationFrame(reInicializa);
 
 function borraCanvas(){
     canvas.width = ancho;
@@ -80,23 +92,37 @@ function borraCanvas(){
 
 
 var i = 0;
+var velocidadFrame = (personaje.length * 1000);
 function dibujaRex(){
     
-    setInterval(function(){ 
-        if(i > 2){
-            i = 0;
-        }else if(i == 0){
-            i = 1;
-        }else if(i == 1){
-            i = 0;
+    //setInterval(function(){ 
+        
+        //console.log("xd")
+        
+    //}, 10000);
+    //esta tomando el set interval como el tiempo en el que debe de empezar a transcurrir las animaciones
+    if(nivel.muerto == true){
+        ctx.drawImage(imgRexMuerto,0,0,50,50,100,trex.y,50,50);
+    }else{
+        if(trex.saltando == true){
+            ctx.drawImage(imgRexSalto,0,0,50,50,100,trex.y,50,50);    
+        }else{
+            ctx.drawImage(personaje[i],0,0,50,50,100,trex.y,50,50);
         }
-
-    }, 100);
+    }
     
     
-    ctx.drawImage(personaje[i],0,0,50,50,100,trex.y,50,50);
 }
 //--------------------------------------------------
+
+setInterval(function(){
+    if(i < personaje.length - 1){
+        i++;
+    }else{
+        i = 0;
+    }
+}, 100)
+
 
 function dibujaCactus(){
     ctx.drawImage(imgCactus,0,0, 370,370,cactus.x, cactus.y, 40, 75);
@@ -191,10 +217,11 @@ function puntuacion(){
 
 //----------------------------------------
 // Bucle principal
-var FPS = 50;
+/*
+var FPS = 20;
 setInterval(function(){
     principal();
-},1000/FPS);
+},1000/FPS);*/
 //El set interval hace que se ejecute algo cada cierto tiempo
 
 function principal(){
@@ -211,4 +238,7 @@ function principal(){
     dibujaNube();
     dibujaRex();
     puntuacion();
+    requestAnimationFrame(principal);
 }
+
+
