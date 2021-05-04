@@ -240,15 +240,16 @@ function controlDeHabilidades(){
     }   
 }
 
+var contadorSalto = 0;
 function saltar(){
 
     
     if(trex.saltando == false){
         trex.saltando = true;
         trex.vy = trex.salto;
-    }
-
-    
+        contadorSalto = 1;
+        //console.log(contadorSalto);
+    } 
 }
 
 function controlDePoderes(){
@@ -284,7 +285,10 @@ function controlDePoderes(){
 }
 
 function habilidadLuigi(){
-    
+    if(contadorSalto == 1){
+        trex.vy = 14;
+        contadorSalto = 0;
+    }
 }
 
 
@@ -295,12 +299,13 @@ function gravedad(){
             trex.saltando = false;
             trex.vy = 0;
             trex.y = suelo;
+            contadorSalto = 0;
+            //console.log(contadorSalto);        
         }else{
             trex.vy -= trex.gravedad;
-            trex.y -= trex.vy;
+            trex.y -= trex.vy;           
         }  
-
-    }    
+    }  
 }
 
 
