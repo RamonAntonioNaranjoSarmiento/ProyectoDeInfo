@@ -214,7 +214,7 @@ function controlDeHabilidades(){
         case 'mario': 
             trex.gravedad = 2;
             trex.salto = 28;     
-            console.log('mario');        
+            //console.log('mario');        
         break;
 
         case 'luigi':  
@@ -236,7 +236,7 @@ function controlDeHabilidades(){
             //console.log('waluigi');        
         break;
         default: 
-        console.log("No hay personaje, recargue la página")
+        alert("No hay personaje, recargue la página")
     }   
 }
 
@@ -258,28 +258,28 @@ function controlDePoderes(){
         case 'mario': 
             trex.gravedad = 2;
             trex.salto = 28;     
-            console.log('mario');   
+            //console.log('mario');   
             habilidadMario();     
         break;
 
         case 'luigi':  
             trex.gravedad = 2;
             trex.salto = 28;        
-            console.log('luigi');  
+           // console.log('luigi');  
             habilidadLuigi();      
         break;
 
         case 'wario':   
             trex.gravedad = 3;
             trex.salto = 30;     
-            console.log('wario');
+            //console.log('wario');
             habilidadWario();
         break;
 
         case 'waluigi':  
             trex.gravedad = .5;
             trex.salto = 20;  
-                console.log('waluigi');        
+                //console.log('waluigi');        
         break;
         default: 
         console.log("No hay personaje")
@@ -328,7 +328,7 @@ function habilidadWario(){
 
 function gravedad(){
     if(trex.saltando == true){
-        console.log("Está saltando")
+        //console.log("Está saltando")
         if(trex.y -trex.vy - trex.gravedad > suelo){
             trex.saltando = false;
             trex.vy = 0;
