@@ -311,11 +311,14 @@ function habilidadMario(){
 
 function habilidadLuigi(){
     if(contadorSalto == 1){
-        trex.vy = 14;
+        trex.vy = 22;
         contadorSalto = 0;
     }
 }
 
+function habilidadWario(){
+
+}
 
 
 
@@ -338,7 +341,7 @@ function gravedad(){
 
 function colision(){
 
-    if(cactus.x >= 100 && cactus.x <= 150){
+    if(cactus.x >= 95 && cactus.x <= 150){
         if(trex.y >= suelo){
             nivel.muerto = true;
             nivel.velocidad = 0; 
