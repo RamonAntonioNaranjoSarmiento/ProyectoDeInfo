@@ -258,7 +258,8 @@ function controlDePoderes(){
         case 'mario': 
             trex.gravedad = 2;
             trex.salto = 28;     
-            console.log('mario');        
+            console.log('mario');   
+            habilidadMario();     
         break;
 
         case 'luigi':  
@@ -284,12 +285,29 @@ function controlDePoderes(){
     }   
 }
 
+var contadorTiempoEnAire = 0;
+function habilidadMario(){
+    if(trex.saltando == true){
+        setInterval(function(){
+            contadorTiempoEnAire = 1;
+            trex.y = trex.y;
+        }, 2000)
+    }
+
+    setInterval(function(){
+
+    },0);
+    console.log(contadorTiempoEnAire);
+}
+
 function habilidadLuigi(){
     if(contadorSalto == 1){
         trex.vy = 14;
         contadorSalto = 0;
     }
 }
+
+
 
 
 function gravedad(){
