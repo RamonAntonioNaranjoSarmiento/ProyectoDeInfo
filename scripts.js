@@ -287,17 +287,26 @@ function controlDePoderes(){
 
 var contadorTiempoEnAire = 0;
 function habilidadMario(){
-    if(trex.saltando == true){
-        setInterval(function(){
-            contadorTiempoEnAire = 1;
-            trex.y = trex.y;
-        }, 2000)
-    }
+    var alturaDelMomento = trex.y;
 
-    setInterval(function(){
-
-    },0);
-    console.log(contadorTiempoEnAire);
+    if(trex.saltando == true && nivel.muerto == false && contadorTiempoEnAire == 0){
+        var tiempoEnAire = setInterval(function(){
+            contadorTiempoEnAire = 1;  
+            trex.saltando = false;        
+            trex.y = alturaDelMomento;  
+            //console.log(trex.saltando);      
+        }, 1);
+    } 
+    setTimeout(function(){
+        clearInterval(tiempoEnAire);
+        trex.saltando = true;
+        setTimeout(function(){
+            contadorTiempoEnAire = 0;
+        },3000);
+    }, 2000)
+    //setTimeout(gravedad(),3000);
+    //console.log(contadorTiempoEnAire);
+    
 }
 
 function habilidadLuigi(){
