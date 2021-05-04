@@ -15,6 +15,19 @@ document.addEventListener('keydown', function(evento){
     }
 });
 
+document.addEventListener('keydown', function(evento){
+    if(evento.keyCode == 18){//cuando sepulsa una tecla se suelta un numerito, el numero del espacio es 32
+        console.log("arriba");
+        //cuando se pulse el numero 32 (el espacio) que se imprima salta
+        if(nivel.muerto == true){
+
+        }else{
+            controlDePoderes();
+        }
+            
+    }
+});
+
 
 var ancho = 700;
 var alto = 300;
@@ -45,13 +58,32 @@ var suelog = {
 
 var imgRex,imgRex1, imgNube, imgCactus,imgSuelo,chooseCharacter;
 var personaje = [];
+var valoresDePersonajes = ['mario', 'luigi', 'wario', 'waluigi'];
+
 
 function elegirPersonaje(){
-    chooseCharacter = document.nombreform.character.value;
+    chooseCharacter = document.nombreform.character.value;   
     cargaImagenes();
+    controlDeHabilidades();
 }
 
-
+function controlDeBotones(){
+    
+    for(var i = 0; i < 4 ; i++){
+        if(chooseCharacter != valoresDePersonajes[i]){
+            if(nivel.muerto == false){
+                document.getElementById(valoresDePersonajes[i]).disabled = true;       
+                
+        
+            } else if(nivel.muerto == true){
+                document.getElementById(valoresDePersonajes[i]).disabled = false;            
+            }    
+        }       
+    }
+    
+    
+    
+}
 
 function cargaImagenes(){
     
@@ -75,9 +107,9 @@ function cargaImagenes(){
     imgSuelo.src = 'img/suelo.png';
     personaje = [imgRex, imgRex1, imgRex, imgRex2];
     
-    setInterval(function(){
-        console.log(chooseCharacter);
-    }, 1000); 
+    //setInterval(function(){
+      //  console.log(chooseCharacter);
+    //}, 1000); 
 }
 
 
@@ -175,15 +207,120 @@ function logicaNube(){
     }
 }
 
+var verNombre;
+function controlDeHabilidades(){
+    switch(chooseCharacter){
+        
+        case 'mario': 
+            trex.gravedad = 2;
+            trex.salto = 28;     
+            console.log('mario');        
+        break;
 
+        case 'luigi':  
+            trex.gravedad = 2;
+            trex.salto = 28;        
+            console.log('luigi');  
+                 
+        break;
+
+        case 'wario':   
+            trex.gravedad = 5;
+            trex.salto = 40;     
+                console.log('wario');      
+        break;
+
+        case 'waluigi':  
+            trex.gravedad = .5;
+            trex.salto = 20;  
+                console.log('waluigi');        
+        break;
+        default: 
+        console.log("No hay personaje")
+    }   
+}
+
+var contadorSalto = 0;
 function saltar(){
+
+    
     if(trex.saltando == false){
         trex.saltando = true;
         trex.vy = trex.salto;
-    }
-    
+        contadorSalto = 1;
+        //console.log(contadorSalto);
+    } 
+}
+
+function controlDePoderes(){
+    switch(chooseCharacter){
+        
+        case 'mario': 
+            trex.gravedad = 2;
+            trex.salto = 28;     
+            console.log('mario');   
+            habilidadMario();     
+        break;
+
+        case 'luigi':  
+            trex.gravedad = 2;
+            trex.salto = 28;        
+            console.log('luigi');  
+            habilidadLuigi();      
+        break;
+
+        case 'wario':   
+            trex.gravedad = 5;
+            trex.salto = 40;     
+                console.log('wario');      
+        break;
+
+        case 'waluigi':  
+            trex.gravedad = .5;
+            trex.salto = 20;  
+                console.log('waluigi');        
+        break;
+        default: 
+        console.log("No hay personaje")
+    }   
+}
+
+var contadorTiempoEnAire = 0;
+function habilidadMario(){
+    var alturaDelMomento = trex.y;
+
+    if(trex.saltando == true && nivel.muerto == false && contadorTiempoEnAire == 0){
+        var tiempoEnAire = setInterval(function(){
+            contadorTiempoEnAire = 1;  
+            trex.saltando = false;        
+            trex.y = alturaDelMomento;  
+            //console.log(trex.saltando);      
+        }, 1);
+    } 
+    setTimeout(function(){
+        clearInterval(tiempoEnAire);
+        trex.saltando = true;
+        setTimeout(function(){
+            contadorTiempoEnAire = 0;
+        },3000);
+    }, 2000)
+    //setTimeout(gravedad(),3000);
+    //console.log(contadorTiempoEnAire);
     
 }
+
+function habilidadLuigi(){
+    if(contadorSalto == 1){
+        trex.vy = 22;
+        contadorSalto = 0;
+    }
+}
+
+function habilidadWario(){
+
+}
+
+
 
 function gravedad(){
     if(trex.saltando == true){
@@ -192,18 +329,19 @@ function gravedad(){
             trex.saltando = false;
             trex.vy = 0;
             trex.y = suelo;
+            contadorSalto = 0;
+            //console.log(contadorSalto);        
         }else{
             trex.vy -= trex.gravedad;
-            trex.y -= trex.vy;
+            trex.y -= trex.vy;           
         }  
-
-    }    
+    }  
 }
 
 
 function colision(){
 
-    if(cactus.x >= 100 && cactus.x <= 150){
+    if(cactus.x >= 95 && cactus.x <= 150){
         if(trex.y >= suelo){
             nivel.muerto = true;
             nivel.velocidad = 0; 
@@ -220,9 +358,10 @@ function puntuacion(){
     ctx.fillText(`${nivel.puntuacion}` ,600,50);
     
     if(nivel.muerto == true){   
-    
+        
         ctx.font = "60px impact"   
         ctx.fillText('Game Over', 240, 250);
+        
     }   
 }
 
@@ -245,6 +384,7 @@ function principal(){
     dibujaSuelo();
     logicaCactus();
     logicaNube();
+    controlDeBotones();
     
     dibujaCactus();
     dibujaNube();
